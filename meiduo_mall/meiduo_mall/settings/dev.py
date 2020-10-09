@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users.apps.UsersConfig',
     'rest_framework',
-    'captcha',
+    'verifications.apps.VerificationsConfig'
 ]
 
 MIDDLEWARE = [
