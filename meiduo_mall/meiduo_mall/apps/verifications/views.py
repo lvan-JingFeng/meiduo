@@ -1,8 +1,9 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from meiduo_mall.meiduo_mall.libs.captcha.captcha import captcha
-from django.shortcuts import render
 from django_redis import get_redis_connection
+
+from meiduo_mall.libs.captcha.captcha import captcha
+from . import constants
 # Create your views here.
 """
 在用户注册中，需要实现一下接口：
@@ -27,6 +28,6 @@ class ImageCodeView(APIView):
 
         text, image = captcha.generate_captcha()
         redis_conn = get_redis_connection("verify_codes")
-        redis_conn.setex("img_%s" % code_id, constants.IMAGE_CODE_REDIS_EXPIRES, text)
+        redis_conn.setex("img_%s" % image_code_id, constants.IMAGE_CODE_REDIS_EXPIRES, text)
 
         return HttpResponse(image, content_type="images/jpg")
