@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users.apps.UsersConfig',
     'rest_framework',
+    'captcha',
 ]
 
 MIDDLEWARE = [
@@ -98,6 +99,14 @@ CACHES = {
     "session": {
         "BACKEND": "django_redis.cache.RedisCache",
         "LOCATION": "redis://10.211.55.5:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    },
+    """新增redis配置，用来存放验证码数据"""
+    "verify_codes": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://10.211.55.5:6379/2",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
